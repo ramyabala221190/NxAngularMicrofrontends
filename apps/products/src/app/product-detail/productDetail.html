@@ -1,0 +1,482 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{pro.title}}</h5>
+    <p class="card-text">{{pro.description}}</p>
+
+    <lib-accordion
+      [accordionIdentifier]="pro.id + 'Details'"
+      [accordionHeading]="'Product Details'"
+    >
+      <div class="product-detail-accordion">
+        <div class="first-parent common-parent">
+          <div class="left-top-container">
+            <div class="curved-tag discount-container">
+              <i class="bi bi-tag-fill"></i
+              ><span>{{pro.discountPercentage}}% OFF</span>
+            </div>
+            <div class="curved-tag stock-container">
+              In Stock ({{pro.stock}} left)
+            </div>
+          </div>
+          <div
+            class="right-top-container"
+            [ngStyle]="{'cursor': pro.imageZoomed ? 'zoom-out': 'zoom-in'}"
+          >
+            <img
+              class="img-thumbnail"
+              (click)="pro.imageZoomed=!pro.imageZoomed"
+              [ngClass]="pro.imageZoomed ? 'zoomed':''"
+              [src]="pro.selectedImage"
+              alt="Product thumbnail"
+            />
+          </div>
+        </div>
+
+        <div class="second-parent common-parent">
+          <ng-container *ngFor="let proImage of pro.images">
+            <img
+              class="image-to-be-viewed"
+              [src]="proImage"
+              alt="Product image"
+              (click)="pro.selectedImage=proImage;"
+            />
+          </ng-container>
+        </div>
+
+        <div class="third-parent common-parent">
+          <div class="qr-code-container">
+            <img
+              class="rounder"
+              [src]="pro.meta.qrCode"
+              alt="Product QR Code"
+            />
+          </div>
+          <div class="meta-container">
+            <span>PRODUCT META</span>
+            <span><b>Barcode</b>: {{pro.meta.barcode}}</span>
+            <span><b>SKU</b>: {{pro.sku}}</span>
+          </div>
+        </div>
+
+        <div class="fourth-parent common-parent">
+          <div class="top">
+            <div class="brand-container">
+              <span><b>BRAND : {{pro.brand}}</b></span>
+            </div>
+            <div class="review-container">
+              <app-star
+                [totalStarCount]="totalStarCount.length"
+                [totalStarsReceived]="pro.averageRating"
+                [starFillColor]="reviewStarColor"
+              ></app-star>
+              <span class="average-rating">{{pro.flrAverageRating}} </span
+              ><span class="review-count"
+                >({{pro.reviews.length}} reviews)</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="fifth-parent common-parent">
+          <div class="price-container">
+            <span class="finalPrice">{{pro.price}}$</span
+            ><span class="originalPrice">${{pro.originalPrice}}</span
+            ><span class="discountedPrice"
+              >Save {{pro.discountPercentage}} %</span
+            >
+          </div>
+
+          <div class="price-info">
+            Inclusive of all taxes. Minimum order quantity rule applies.
+          </div>
+        </div>
+
+        <div class="sixth-parent common-parent">
+          <div class="top">
+            <div class="left">
+              <div class="icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-bag-dash-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0M6 9.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1z"
+                  />
+                </svg>
+              </div>
+              <div class="content-container">
+                <span class="mild-label">MIN ORDER</span>
+                <span class="small-bold-content"
+                  >{{pro.minimumOrderQuantity}} pieces</span
+                >
+              </div>
+            </div>
+            <div class="right">
+              <div class="icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-shield-shaded"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M8 14.933a1 1 0 0 0 .1-.025q.114-.034.294-.118c.24-.113.547-.29.893-.533a10.7 10.7 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.8 11.8 0 0 1-2.517 2.453 7 7 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7 7 0 0 1-1.048-.625 11.8 11.8 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 63 63 0 0 1 5.072.56"
+                  />
+                </svg>
+              </div>
+              <div class="content-container">
+                <span class="mild-label">WARRANTY</span>
+                <span class="small-bold-content"
+                  >{{pro.warrantyInformation}}</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="bottom">
+            <div class="left">
+              <div class="icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-airplane-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849"
+                  />
+                </svg>
+              </div>
+              <div class="content-container">
+                <span class="mild-label">SHIPPING</span>
+                <span class="small-bold-content"
+                  >{{pro.shippingInformation}}</span
+                >
+              </div>
+            </div>
+            <div class="right">
+              <div class="icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-arrow-counterclockwise"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"
+                  />
+                  <path
+                    d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"
+                  />
+                </svg>
+              </div>
+              <div class="content-container">
+                <span class="mild-label">RETURN POLICY</span>
+                <span class="small-bold-content">{{pro.returnPolicy}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr />
+
+        <div class="seventh-parent common-parent">
+          <div class="quantity-container">
+            <lib-quantity
+              [minOrderQty]="pro.minimumOrderQuantity"
+              (updatedQuantity)="pro.quantity=$event"
+            ></lib-quantity>
+          </div>
+          <div class="cost-update-container">
+            <div class="total-price">
+              <span class="mild-label">TOTAL PRICE</span
+              ><span class="price-content large-bold-content"
+                >${{ pro.quantity * pro.price }}</span
+              >
+            </div>
+            <div class="total-quantity">
+              <span>{{pro.quantity}} pcs</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="eighth-parent common-parent">
+          <button
+            class="btn cart-btn btn-lg"
+            (click)="addProductToCart(pro)"
+            [disabled]="pro.productAdded"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-cart-plus-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0M9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0"
+              /></svg
+            >Add to Cart
+          </button>
+
+          <button class="btn btn-lg buy-btn">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-lightning-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641z"
+              /></svg
+            >Buy Now
+          </button>
+        </div>
+      </div>
+    </lib-accordion>
+
+    <lib-accordion
+      [accordionIdentifier]="pro.id + 'Dimensions'"
+      [accordionHeading]="'Product Dimensions'"
+    >
+    <div class="product-detail-accordion">
+       <div class="common-heading-subheading-icon-container">
+        <div class="icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-rulers"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M1 0a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h5v-1H2v-1h4v-1H4v-1h2v-1H2v-1h4V9H4V8h2V7H2V6h4V2h1v4h1V4h1v2h1V2h1v4h1V4h1v2h1V2h1v4h1V1a1 1 0 0 0-1-1z"
+            />
+          </svg>
+        </div>
+
+        <div class="heading-label">
+          <span class="bold-label">Dimensions & Weight</span>
+          <span class="mild-label">Physical Product Properties</span>
+        </div>
+      </div>
+
+      <div class="product-dimensions-table">
+        <div class="dimension">
+          <span class="medium-label">Width</span>
+          <span class="bold-content">{{pro.dimensions.width}} cm</span>
+        </div>
+        <hr />
+        <div class="dimension">
+          <span class="medium-label">Height</span>
+          <span class="bold-content">{{pro.dimensions.height}} cm</span>
+        </div>
+        <hr />
+        <div class="dimension">
+          <span class="medium-label">Depth</span>
+          <span class="bold-content">{{pro.dimensions.depth}} cm</span>
+        </div>
+        <hr />
+        <div class="dimension">
+          <span class="medium-label">Weight</span>
+          <span class="bold-content">{{pro.weight}} oz</span>
+        </div>
+      </div>
+    </div>
+     
+    </lib-accordion>
+
+    <lib-accordion
+      [accordionIdentifier]="pro.id + 'Categories'"
+      [accordionHeading]="'Categories & Tags'"
+    >
+    <div class="product-detail-accordion">
+  <div class="common-heading-subheading-icon-container">
+        <div class="icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-tags-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586zm3.5 4a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"
+            />
+            <path
+              d="M1.293 7.793A1 1 0 0 1 1 7.086V2a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l.043-.043z"
+            />
+          </svg>
+        </div>
+
+        <div class="heading-label">
+          <span class="bold-label">Categories & Tags</span>
+          <span class="mild-label">Taxonomy classification</span>
+        </div>
+      </div>
+
+      <div class="product-category-table"></div>
+    </div>
+    
+    </lib-accordion>
+
+    <lib-accordion
+      [accordionIdentifier]="pro.id + 'Reviews'"
+      [accordionHeading]="'Reviews'"
+    >
+    <div class="product-detail-accordion">
+  <div class="review-heading">
+        <div class="review-heading-label">
+          <span class="bold-label">Customer Reviews</span>
+          <span class="medium-label"
+            >Based on {{pro.reviews.length}} verified customer feedback
+            reports</span
+          >
+        </div>
+        <div class="add-review">
+          <button class="btn btn-lg">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-pencil-square"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"
+              />
+            </svg>
+            <span class="bold-label">Write a Review</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="review-body">
+        <div class="card">
+          <div class="card-body">
+            <div class="rating-container">
+              <div class="brief-rating">
+                <span class="bold-label">{{pro.flrAverageRating}}</span>
+                <span
+                  ><app-star
+                    [totalStarCount]="totalStarCount.length"
+                    [totalStarsReceived]="pro.averageRating"
+                    [starFillColor]="reviewStarColor"
+                  ></app-star
+                ></span>
+                <span class="mild-label">Overall Star Rating</span>
+              </div>
+              <div class="detailed-rating">
+                <ng-container *ngFor="let rating of totalStarCount">
+                  <div class="rating-progress">
+                    <span class="mild-label">{{rating + 1}}</span>
+                    <div class="icon">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-star-fill"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+                        />
+                      </svg>
+                    </div>
+                    <div
+                      class="progress"
+                      role="progressbar"
+                      aria-label="Basic example"
+                      [aria-valuenow]="((rating+1) | ratingProgress:pro.ratingUserCountMap).per"
+                      aria-valuemin="0"
+                      [aria-valuemax]="100"
+                    >
+                      <div
+                        class="progress-bar bg-warning"
+                        [ngStyle]="{'width': ((rating+1) | ratingProgress:pro.ratingUserCountMap).per + '%'}"
+                      ></div>
+                    </div>
+                    <span class="mild-label"
+                      >{{((rating+1) |
+                      ratingProgress:pro.ratingUserCountMap).count }}</span
+                    >
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ng-container *ngFor="let review of pro.reviews">
+          <div class="card">
+            <div class="card-body">
+              <div class="review-container">
+                <div class="review-left">
+                  <div class="common-heading-subheading-icon-container">
+                    <div class="icon">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-person"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"
+                        />
+                      </svg>
+                    </div>
+                    <div class="heading-label">
+                      <span class="bold-label">{{review.reviewerName}}</span>
+                      <span class="mild-label">{{review.reviewerEmail}}</span>
+                    </div>
+                  </div>
+
+                  <div class="review-content">
+                    <app-star
+                      [totalStarCount]="totalStarCount.length"
+                      [totalStarsReceived]="review.rating"
+                      [starFillColor]="reviewStarColor"
+                    ></app-star>
+                    <span>{{review.comment}}</span>
+                  </div>
+                </div>
+
+                <div class="review-right">
+                  <span class="mild-label"
+                    >{{review.date | date:'longDate' }}</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    
+    </lib-accordion>
+  </div>
+</div>

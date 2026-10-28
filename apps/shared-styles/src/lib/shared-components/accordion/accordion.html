@@ -1,0 +1,25 @@
+<div class="accordion" id="accordion{{accordionIdentifier}}">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button
+        class="accordion-button"
+        type="button"
+        data-bs-toggle="collapse"
+        attr.data-bs-target="#collapse{{accordionIdentifier}}"
+        aria-expanded="true"
+        aria-controls="collapse{{accordionIdentifier}}"
+      >
+        {{accordionHeading}}
+      </button>
+    </h2>
+    <div
+      id="collapse{{accordionIdentifier}}"
+      class="accordion-collapse collapse show"
+      attr.data-bs-parent="#accordion{{accordionIdentifier}}Example"
+    >
+      <div class="accordion-body">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+</div>

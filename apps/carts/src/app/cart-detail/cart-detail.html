@@ -1,0 +1,73 @@
+<div class="my-cart-container" *ngIf="updatedCartData() as cartData">
+  <ng-container *ngIf="cartData.products.length">
+    <div class="my-cart-heading">
+      <span class="large-bold-content">My Cart</span>
+    </div>
+
+    <div class="my-cart-items">
+      <ng-container *ngFor="let product of cartData.products">
+        <div class="card">
+          <div class="card-body">
+            <div class="left">
+              <img [src]="product.thumbnail" />
+            </div>
+            <div class="center">
+              <span class="large-bold-content">{{product.title}}</span>
+              <span class="mild-span">{{product.sku}}</span>
+              <span class="bold-content">${{product.price}}</span>
+            </div>
+            <div class="right">
+              <lib-quantity
+                [providedQty]="product.quantity"
+                [minOrderQty]="product.minimumOrderQuantity"
+                (updatedQuantity)="updateQuantity(product,$event)"
+              ></lib-quantity>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-trash"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"
+                />
+                <path
+                  d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="my-cart-order-summary">
+      <span class="large-bold-content">Order Summary</span>
+      <div class="order-summary-item-list">
+        <div class="order-summary-item">
+          <span class="medium-label">SubTotal</span
+          ><span class="large-bold-content">${{subTotal()}}</span>
+        </div>
+        <div class="order-summary-item">
+          <span class="medium-label">Discount</span
+          ><span class="large-bold-content">${{totalDiscount()}}</span>
+        </div>
+        <hr />
+        <div class="order-summary-item">
+          <span class="medium-label">Final Price</span
+          ><span class="large-bold-content">${{finalPrice()}}</span>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn btn-checkout btn-lg">
+      Checkout <i class="bi bi-box-arrow-in-right"></i>
+    </button>
+  </ng-container>
+
+  <div class="cart-empty" *ngIf="!cartData.products.length">
+    Cart is empty <i class="bi bi-emoji-frown-fill"></i>
+  </div>
+</div>

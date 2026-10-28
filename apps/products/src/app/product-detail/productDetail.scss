@@ -1,0 +1,353 @@
+div.card {
+  width: 100%;
+  height: auto;
+}
+
+div.card-body {
+  height: auto;
+}
+
+
+::ng-deep div.product-detail-accordion {
+
+  img.image-to-be-viewed {
+    cursor: pointer;
+  }
+
+  div.common-heading-subheading-icon-container {
+    display: flex;
+    gap: var(--flex-item-gap);
+    align-items: center;
+
+    div.heading-label {
+      display: inline-flex;
+      flex-direction: column;
+    }
+  }
+
+  div.product-dimensions-table {
+    display: flex;
+    flex-direction: column;
+
+    .dimension {
+      display: inline-flex;
+      justify-content: space-between;
+    }
+  }
+
+  div.review-heading {
+    display: flex;
+    justify-content: space-between;
+
+    div.review-heading-label {
+      display: inline-flex;
+      flex-direction: column;
+    }
+
+    div.add-review {
+      button {
+        background-color: var(--header-bg-color);
+        color: var(--text-color-on-black);
+        display: flex;
+        align-items: center;
+        gap: var(--flex-item-gap);
+      }
+    }
+  }
+
+  div.review-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--flex-item-gap);
+
+    div.rating-container {
+      display: flex;
+      flex-direction: column;
+
+      div.brief-rating {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      div.detailed-rating {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .rating-progress {
+        display: flex;
+        align-items: center;
+        /* Vertically aligns the labels and the progress bar */
+        gap: var(--flex-item-gap);
+        /* Adds a clean space between the labels and the bar */
+        width: 100%;
+        /* Ensures the entire row takes full width */
+      }
+
+      .rating-progress .progress {
+        flex-grow: 1;
+        /* FORCES the progress bar to stretch and fill available space */
+      }
+
+      /* Optional: Give your labels a fixed minimum width so they don't squash */
+      .rating-progress .mild-label {
+        flex-shrink: 0;
+        min-width: 20px;
+      }
+    }
+
+    div.card {
+      background-color: var(--card-bg-color);
+    }
+
+    div.review-content {
+      display: inline-flex;
+      flex-direction: column;
+    }
+
+    div.review-container {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  div.common-parent {
+    border-radius: var(--box-border-radius);
+    padding: var(--box-padding);
+  }
+
+  div.first-parent {
+    background-color: var(--card-bg-color);
+    display: flex;
+  }
+
+  div.second-parent {
+    display: inline-flex;
+
+    img {
+      width: 10%;
+    }
+  }
+
+  div.fourth-parent {
+    display: flex;
+    flex-direction: column;
+
+    div.top {
+      display: flex;
+      justify-content: space-between;
+
+      div.brand-container {
+        color: black;
+        background-color: rgb(253 242 244);
+        padding: 5px;
+        border-radius: 10px;
+      }
+
+      div.review-container {
+        display: flex;
+        gap: var(--flex-item-gap);
+        border-radius: var(--box-border-radius);
+        padding: var(--box-padding);
+        background-color: rgb(255 251 235);
+        border: 1px solid orange;
+
+        span.review-count {
+          color: rgb(217 119 6);
+        }
+
+        span.average-rating {
+          color: rgb(146 64 14);
+        }
+      }
+    }
+  }
+
+  div.fifth-parent {
+    background-color: var(--card-bg-color);
+    display: flex;
+    flex-direction: column;
+
+    div.price-container {
+      display: inline-flex;
+      width: 100%;
+      justify-content: start;
+      align-items: center;
+      gap: var(--flex-item-gap);
+
+      span.originalPrice {
+        text-decoration: line-through;
+        color: rgb(148 163 184);
+      }
+
+      span.discountedPrice {
+        color: rgb(6 95 70);
+        background-color: rgb(209 250 229);
+        border-radius: 10px;
+        font-weight: bolder;
+      }
+
+      span.finalPrice {
+        font-weight: bolder;
+        font-size: xx-large;
+      }
+    }
+
+    div.price-info {
+      color: rgb(100 116 139);
+      font-size: smaller;
+    }
+  }
+
+  div.seventh-parent {
+    display: flex;
+    gap: var(--flex-item-gap);
+    width: 100%;
+
+    .quantity-container,
+    .cost-update-container {
+      border-radius: 10px;
+    }
+
+    .quantity-container {
+      width: 20%;
+    }
+
+    .cost-update-container {
+      width: 80%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: black;
+      padding: var(--box-padding);
+
+      span.price-content {
+        color: white;
+      }
+
+      div.total-quantity {
+        span {
+          background-color: rgb(203 213 225);
+          border-radius: 30px;
+          padding: 4px;
+        }
+      }
+    }
+  }
+
+  div.sixth-parent {
+    display: flex;
+    flex-direction: column;
+    gap: var(--flex-item-gap);
+    width: 100%;
+
+    div.top,
+    div.bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--flex-item-gap);
+    }
+
+    div.left,
+    div.right {
+      width: 50%;
+      border: 1px solid lightblue;
+      background-color: rgb(241 245 249);
+      border-radius: var(--box-border-radius);
+      display: flex;
+      align-items: center;
+      gap: var(--flex-item-gap);
+      padding: var(--box-padding);
+
+      div.content-container {
+        display: inline-flex;
+        flex-direction: column;
+      }
+    }
+  }
+
+  div.eighth-parent {
+    display: flex;
+    gap: var(--flex-item-gap);
+
+    button {
+      width: 50%;
+      font-weight: bolder;
+      font-size: medium;
+    }
+
+    button.buy-btn {
+      background-color: #c72453;
+      color: white;
+    }
+
+    button.cart-btn {
+      background-color: var(--card-bg-color);
+    }
+  }
+
+  div.third-parent {
+    display: flex;
+    background-color: var(--card-bg-color);
+    width: 100%;
+    justify-content: flex-start;
+
+    div.qr-code-container {
+      img {
+        width: 30%;
+        height: auto;
+      }
+    }
+
+    div.meta-container {
+      border-radius: var(--box-border-radius);
+      display: inline-flex;
+      flex-direction: column;
+    }
+  }
+
+  div.left-top-container {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--flex-item-gap);
+
+    div.curved-tag {
+      display: inline-flex;
+      border-radius: var(--box-border-radius);
+      color: white;
+      justify-content: center;
+    }
+
+    div.discount-container {
+      background-color: rgb(224 49 101);
+    }
+
+    div.stock-container {
+      background-color: rgb(5 150 105);
+    }
+  }
+
+  div.right-top-container {
+    width: 100%;
+    object-fit: cover;
+    cursor: zoom-in;
+    /* Smooth transition animation */
+    transition: transform 0.3s ease;
+
+    img {
+      width: 30%;
+      height: auto;
+    }
+
+    img.zoomed {
+      transform: scale(2);
+      /* 2x zoom */
+      cursor: zoom-out;
+    }
+  }
+
+
+
+}

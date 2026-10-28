@@ -1,0 +1,16 @@
+.navbar {
+  background-color: var(--header-bg-color) !important;
+  ul li a.nav-link, ul li span,  span.navbar-brand {
+    color: var(--text-color-on-black);
+  }
+
+  ul{
+    display:flex;
+    align-items: center;
+  }
+}
+
+
+.activeTab {
+  background-color: var(--std-bg-color) !important;
+}

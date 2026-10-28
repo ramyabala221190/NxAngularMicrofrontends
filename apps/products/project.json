@@ -1,0 +1,120 @@
+{
+  "name": "products",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "app",
+  "sourceRoot": "apps/products/src",
+  "tags": ["scope:mfe"],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:webpack-browser",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/products",
+        "index": "apps/products/src/index.html",
+        "main": "apps/products/src/main.ts",
+        "tsConfig": "apps/products/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/products/public"
+          }
+        ],
+       "styles": [
+          "apps/products/src/styles.scss",
+          "node_modules/bootstrap/dist/css/bootstrap.min.css"
+        ],
+        "scripts": [
+          "node_modules/jquery/dist/jquery.min.js",
+          "node_modules/bootstrap/dist/js/bootstrap.min.js"
+        ],
+        "customWebpackConfig": {
+          "path": "apps/products/webpack.config.ts"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "4kb",
+              "maximumError": "8kb"
+            }
+          ],
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "apps/products/webpack.prod.config.ts"
+          }
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      }
+    },
+    "serve": {
+      "continuous": true,
+      "executor": "@nx/angular:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "port": 4201,
+        "publicHost": "http://localhost:4201",
+         "headers": {
+          "Access-Control-Allow-Origin": "http://localhost:4200",
+          "Access-Control-Allow-Methods": "GET"
+        }
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "products:build:production"
+        },
+        "development": {
+          "buildTarget": "products:build:development"
+        }
+      },
+      "dependsOn": [
+        "shell:serve"
+      ]
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "products:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "serve-static": {
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "defaultConfiguration": "production",
+      "options": {
+        "buildTarget": "products:build",
+        "port": 4201,
+        "watch": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "products:build:development"
+        },
+        "production": {
+          "buildTarget": "products:build:production"
+        }
+      }
+    }
+  }
+}

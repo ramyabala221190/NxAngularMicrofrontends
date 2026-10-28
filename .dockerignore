@@ -1,0 +1,30 @@
+# =========================================================================
+# ANGULAR & NX MONOREPO TARGETS
+# =========================================================================
+
+# 1. Block all dependency trees recursively
+node_modules/
+**/node_modules/
+
+# 2. Block Angular's massive local build compiler cache (The 1GB+ culprit)
+.angular/
+**/.angular/
+
+# 3. Block Nx pipelines, task caches, and temp directories
+.nx/
+**/nx-cache/
+tmp/
+**/tmp/
+
+# 4. Block all current and prior build outputs
+#dist/
+#**/dist/
+.next/
+
+# 5. IDE settings and system logs
+.git/
+.vscode/
+.idea/
+*.log
+.DS_Store
+Thumba.db

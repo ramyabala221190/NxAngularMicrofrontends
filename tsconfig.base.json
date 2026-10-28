@@ -1,0 +1,39 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "bundler",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": [
+      "es2020",
+      "dom"
+    ],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "strict": false,
+    "paths": {
+      "products/Routes": [
+        "./apps/products/src/app/remote-entry/entry.routes.ts"
+      ],
+      "carts/Routes": [
+        "./apps/carts/src/app/remote-entry/entry.routes.ts"
+      ],
+      "@my-shopping-app/shared-styles": [
+        "./apps/shared-styles/src/index.ts"
+      ],
+      "@my-shopping-app/shared-services": [
+        "./apps/shared-services/src/index.ts"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
+}

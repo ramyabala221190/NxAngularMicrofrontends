@@ -1,0 +1,60 @@
+services:
+    
+    master-nginx:
+      # build:
+      #  context: ../
+      #  dockerfile: nginx/Dockerfile
+      image: nginx:alpine
+      env_file:
+        - .env
+      restart: always
+      ports:
+       - 8086:8086  # from .env file. picked up automatically
+      volumes:
+      # Format: host_path:container_path
+        - ../nginx/proxy_nginx.config:/etc/nginx/templates/default.conf.template
+    
+    shell-app:
+     build:
+       context: ../
+       dockerfile: docker/Dockerfile.universal
+       args:
+         - APP_NAME=shell
+         - APP_PORT=${APP_PORT} # from .env file. picked up automatically
+     env_file:
+        - .env
+     image: shell-app:${TAG} # from .env file. picked up automatically
+     restart: always
+     volumes:
+       - ../dist/apps/shell:/usr/share/nginx/html/shell
+       - ../nginx/app_nginx.config:/etc/nginx/templates/default.conf.template
+     
+    carts-app:
+      build:
+       context: ../
+       dockerfile: docker/Dockerfile.universal
+       args:
+         - APP_NAME=carts
+         - APP_PORT= ${APP_PORT} # from .env file. picked up automatically
+      env_file:
+        - .env
+      image: carts-app:${TAG}
+      restart: always
+      volumes:
+       - ../dist/apps/carts:/usr/share/nginx/html/carts
+       - ../nginx/app_nginx.config:/etc/nginx/templates/default.conf.template
+
+    products-app:
+      build:
+       context: ../
+       dockerfile: docker/Dockerfile.universal
+       args:
+         - APP_NAME=products
+         - APP_PORT= ${APP_PORT}  # from .env file. picked up automatically
+      env_file:
+        - .env   # for usage in container, need to specify explicitly
+      image: products-app:${TAG}
+      restart: always
+      volumes:
+       - ../dist/apps/products:/usr/share/nginx/html/products
+       - ../nginx/app_nginx.config:/etc/nginx/templates/default.conf.template

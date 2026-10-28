@@ -1,0 +1,29 @@
+.quantity-update {
+  display: flex;
+  justify-content: space-around;
+  background-color: rgb(241 245 249);
+  button {
+    background-color: white;
+    color:black;
+    border-radius: 5px;
+    width:20%;
+    height:10%;
+    align-self: center;
+  }
+
+  span.content-label {
+    font-size: smaller;
+    color: rgb(148 163 184);
+  }
+
+  span.content{
+    font-weight: bolder;
+    font-size: large;
+  }
+
+  .quantity-update-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

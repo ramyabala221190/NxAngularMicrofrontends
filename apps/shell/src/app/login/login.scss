@@ -1,0 +1,39 @@
+.login-container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  background-color: var(--std-bg-color);
+  border: var(--box-border);
+  border-radius: var(--box-border-radius);
+  flex-wrap: wrap;
+
+  h5,
+  h3 {
+    align-self: center;
+  }
+
+
+
+  form {
+    width: auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding: var(--box-padding);
+    gap: var(--flex-item-gap);
+
+    button.login-btn{
+      background-color: var(--header-bg-color);
+      color:var(--text-color-on-black);
+    }
+
+    span.forgot-password {
+      align-self: flex-end;
+    }
+
+    span.signup {
+      align-self: center;
+    }
+  }
+}

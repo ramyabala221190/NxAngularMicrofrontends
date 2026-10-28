@@ -1,0 +1,13 @@
+{
+  "name": "shared-services",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/shared-services/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": ["scope:shared"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

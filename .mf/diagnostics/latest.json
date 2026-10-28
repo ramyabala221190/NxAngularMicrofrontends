@@ -1,0 +1,26 @@
+{
+  "bundler": {
+    "name": "webpack"
+  },
+  "mfConfig": {
+    "name": "products",
+    "exposes": {
+      "./Routes": "apps/products/src/app/entry.routes.ts"
+    }
+  },
+  "latestErrorEvent": {
+    "code": "BUILD-001",
+    "message": "Failed to find expose module. #BUILD-001\nargs: {\"exposeModules\":[{\"name\":\"./Routes\",\"module\":null,\"request\":\"apps/products/src/app/entry.routes.ts\"}],\"FEDERATION_WEBPACK_PATH\":\"C:\\\\Users\\\\User\\\\angular\\\\microfrontends\\\\nx-monorepo\\\\my-shopping-app\\\\node_modules\\\\webpack\\\\lib\\\\index.js\"}\nView the docs to see how to solve: https://module-federation.io/guide/troubleshooting/build#build-001",
+    "args": {
+      "exposeModules": [
+        {
+          "name": "./Routes",
+          "module": null,
+          "request": "apps/products/src/app/entry.routes.ts"
+        }
+      ],
+      "FEDERATION_WEBPACK_PATH": "C:\\Users\\User\\angular\\microfrontends\\nx-monorepo\\my-shopping-app\\node_modules\\webpack\\lib\\index.js"
+    },
+    "timestamp": 1791195830852
+  }
+}

@@ -1,0 +1,10 @@
+#!/bin/bash
+echo "Starting container."
+
+if [ "$CONTAINER_APP_NAME" = "shell" ]; then
+    echo "Configuring Module Federation manifests..."
+    cp /usr/share/nginx/html/shell/module-federation.manifest.prod.json /usr/share/nginx/html/shell/module-federation.manifest.json
+else
+    echo "No manifest operations required for micro-frontend: ${CONTAINER_APP_NAME}"
+fi
+nginx -g 'daemon off;'

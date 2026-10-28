@@ -1,0 +1,6 @@
+<div *ngIf="updatedProductList() as products" class="product-card-container">
+  <ng-container *ngFor="let pro of products;">
+    <app-product-detail [pro]="pro" [reviewStarColor]="reviewStarColor" 
+    [totalStarCount]="totalStarCount" (addToCart)="addProductToCart($event)"></app-product-detail>
+  </ng-container>
+</div>

@@ -1,0 +1,93 @@
+@import './shared-variables.scss';
+
+body{
+    font-family: var(--font-family);
+    font-size: var(--std-font-size);
+}
+
+
+a.link,a.link:hover {
+  cursor: pointer;
+  text-decoration: underline !important;
+  color: var(--link-color) !important;
+}
+
+/* Forms */
+
+input.ng-invalid.ng-touched {
+  border: 1px solid var(--danger-color);
+}
+
+/*Reusable svg*/
+
+.bi-person-circle{
+  fill:white;
+}
+
+.bi-cart-plus-fill {
+  fill: var(--sec-bg-color);
+}
+.bi-lightning-fill {
+  fill: white;
+}
+
+.bi-tags-fill {
+  fill: rgb(37 99 235);
+}
+
+.bi-tags-fill {
+  fill: rgb(37 99 235);
+}
+
+.bi-rulers {
+  fill: rgb(147 51 234);
+}
+
+.bi-airplane-fill {
+  fill: rgb(5 150 105);
+}
+
+.bi-arrow-counterclockwise {
+  fill: rgb(225 29 72);
+}
+
+.bi-bag-dash-fill,
+.bi-trash {
+  fill: var(--sec-bg-color);
+}
+.bi-shield-shaded {
+  fill: rgb(79 70 229);
+}
+
+/*Reusable styles for spans*/
+
+span.mild-label {
+  font-size: smaller;
+  color: var(--label-color);
+}
+
+span.bold-label {
+  font-size: large;
+  font-weight: bolder;
+}
+
+span.medium-label {
+  font-size: medium;
+  color: var(--label-color);
+}
+
+/*Reusable styles for label content*/
+
+span.bold-content {
+  font-weight: bolder;
+}
+
+span.large-bold-content {
+  font-weight: bolder;
+  font-size: large;
+}
+
+span.small-bold-content {
+  font-size: smaller;
+  font-weight: bolder;
+}

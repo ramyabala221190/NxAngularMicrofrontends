@@ -1,0 +1,35 @@
+  <div class="login-container">
+       <h5>Welcome Back</h5>
+       <hr>
+      <form class="box" [formGroup]="loginForm">
+        <div class="form-floating mb-3">
+          <input
+            type="email"
+            formControlName="email"
+            class="form-control"
+            id="floatingInput"
+            placeholder="name@example.com"
+          />
+          <label for="floatingInput">Email address</label>
+        </div>
+        <div class="form-floating">
+          <input
+            formControlName="password"
+            type="password"
+            class="form-control"
+            id="floatingPassword"
+            placeholder="Password"
+          />
+          <label for="floatingPassword">Password</label>
+        </div>
+        <span class="forgot-password"><a class="link">Forgot Password ?</a></span>
+        <button
+          [disabled]="loginForm.invalid"
+          class="btn login-btn"
+          (click)="login()"
+        >
+          Login <i class="bi bi-chevron-right"></i>
+        </button>
+        <span class="signup">Dont have an account ?<a class="link">Sign Up</a></span>
+      </form>
+  </div>
